@@ -5,6 +5,9 @@ class RequestEventsTest < ActionDispatch::IntegrationTest
 
   setup do
     ActionMailer::Base.deliveries.clear
+    if defined?(NextRails) && NextRails.next?
+      ActionMailer::Base.default(from: 'OBS Notification <obs-email@opensuse.org>')
+    end
     reset_auth
   end
 
